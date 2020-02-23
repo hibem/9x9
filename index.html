@@ -4,74 +4,13 @@
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
 		<title>董小满的乘法表练习器 第二版</title>
-		<style>
-			body{
-				font-size: 3rem;
-				color: #ce4678;
-				background-color: antiquewhite;
-			}
-			.box{
-				width:100%;
-			}
-			table{
-				width: 100%;
-			}
-			td{
-				width: 32%;
-			}
-			.tbox{				
-				font-size: 2.5rem;
-				height: 3rem;
-				padding-left: 0.5rem;
-				width:36%;
-			}
-			#times{
-				display: none;
-			}
-			.tline{
-				font-size: 1.3rem;
-				margin-bottom: 1rem;
-				
-			}
-			td{
-				position:relative;
-				  display:inline-block;
-				  margin:0.5rem 0;
-			}
-			input.btn{
-				text-align: center;
-					color:white;
-					  font-weight:bold;
-					  font-size:2rem;
-					  text-align: center;
-					  text-decoration:none;
-					  background-color:#1dbba9;
-					  display:block;
-					  position:relative;
-					  width: 90%;
-					  line-height: 4rem;
-					  
-					  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-					  text-shadow: 0px 2px 0px #07312d;
-					  filter: dropshadow(color=#07312d, offx=0px, offy=2px);
-					  
-					  -webkit-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #096f6c;
-					  -moz-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #096f6c;
-					  box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #096f6c;
-					  
-					  -webkit-border-radius: 1rem;
-					  -moz-border-radius: 1rem;
-					  border-radius: 1rem;
-					  outline: none;
-				}
-				input.btn:active{top:10px;background-color:#128c7e;-webkit-box-shadow:inset 0 1px 0#FFE5C4,inset 0-3px 0#096f6c;-moz-box-shadow:inset 0 1px 0#FFE5C4,inset 0-3pxpx 0#096f6c;box-shadow:inset 0 1px 0#FFE5C4,inset 0-3px 0#096f6c}
-		
-				
-		</style>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
 		<script type="text/javascript">
 				var a = Math.floor(Math.random() * 9+1);
 				var b = Math.floor(Math.random() * 9+1); 
-				var c = a*b;
+				var c = a*b;				
+				const audior = new Audio('https://wtstock.oss-cn-hangzhou.aliyuncs.com/Audio/06.mp3')
+				const audiow = new Audio('https://wtstock.oss-cn-hangzhou.aliyuncs.com/Audio/07.mp3')
 				function inp(btn){
 					var inp=document.getElementById('inp1'), val=parseInt(inp.value), val=isNaN(val)?'':val;
 					val+=btn.value;
@@ -84,10 +23,13 @@
 					var inp2=document.getElementById('inp1');
 					if (x!=c){
 						inp2.value="× 错误！";
+						
+						audiow.play();
 					}
 					else{
 						inp2.value='✓';	
-						window.location.reload();				
+						audior.play();
+						setTimeout(function(){window.location.reload();},400);				
 					}
 					
 				}	
@@ -99,128 +41,52 @@
 	
 
 		
-		
 		</script>
 	</head>
 	<body>
 		<div class="box">
-			<script type="text/javascript">
-				document.write(a," x ",b," = ");
-			</script>
-		<script type="text/javascript">	
-		</script>
-		<input class="tbox" type="text" id="inp1" disabled/><div class="tline"><span id="visits">第 0 题</span>
-		<pre id="times">--:--:--</pre>		
-		<a href="index.html" onclick="Session.clear();">重新计数</a></div>
+			<div class="ques">
+				<script type="text/javascript">
+					document.write(a," x ",b," = ");
+				</script>
+			</div>
+			<input class="tbox" type="text" id="inp1" disabled/>
+			<div class="tline">
+				<span id="visits">第 0 题</span>
+				<pre id="times">--:--:--</pre>		
+				<a class="redo" href="index.html" onclick="Session.clear();">重新计数</a>
+			</div>
 		<table>
 			<tr>
-				<td><input class="btn" type="button" value="1" onclick="inp(this);"/></td>
-				<td><input class="btn" type="button" value="2" onclick="inp(this);"/></td>
-				<td><input class="btn" type="button" value="3" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="1" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="2" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="3" onmouseup="audio2.play()" onclick="inp(this);"/></td>
 			</tr>
 			<tr>
-				<td><input class="btn" type="button" value="4" onclick="inp(this);"/></td>
-				<td><input class="btn" type="button" value="5" onclick="inp(this);"/></td>
-				<td><input class="btn" type="button" value="6" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="4" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="5" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="6" onmouseup="audio2.play()" onclick="inp(this);"/></td>
 			</tr>
 			<tr>
-				<td><input class="btn" type="button" value="7" onclick="inp(this);"/></td>
-				<td><input class="btn" type="button" value="8" onclick="inp(this);"/></td>
-				<td><input class="btn" type="button" value="9" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="7" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="8" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="9" onmouseup="audio2.play()" onclick="inp(this);"/></td>
 			</tr>
 			<tr>
-				<td><input class="btn" type="button" value="重填" onclick="inp3(this);"/></td>
-				<td><input class="btn" type="button" value="0" onclick="inp(this);"/></td> 
-				<td><input class="btn" type="button" value="提交" onclick="inp2(this);"/></td>
+				<td><input class="btn" type="button" value="重填" onmouseup="audio.play()" onclick="inp3(this);"/></td>
+				<td><input class="btn" type="button" value="0" onmouseup="audio2.play()" onclick="inp(this);"/></td> 
+				<td><input class="btn" type="button" value="提交" onmouseup="audio.play()" onclick="inp2(this);"/></td>
 			</tr>
-			
+			<script type="text/javascript">
+				
+				const audio = new Audio('https://wtstock.oss-cn-hangzhou.aliyuncs.com/Audio/04.mp3')
+				const audio2 = new Audio('https://wtstock.oss-cn-hangzhou.aliyuncs.com/Audio/05.mp3')
+			</script>
 		</table>
 		<div style="clear:both;margin: 5px;"></div>
 		
-		<script type="text/javascript" charset="utf-8">
-			var JSON = JSON || {};
-			
-			// implement JSON.stringify serialization
-			JSON.stringify = JSON.stringify || function (obj) {
-			
-				var t = typeof (obj);
-				if (t != "object" || obj === null) {
-			
-					// simple data type
-					if (t == "string") obj = '"'+obj+'"';
-					return String(obj);
-			
-				}
-				else {
-			
-					// recurse array or object
-					var n, v, json = [], arr = (obj && obj.constructor == Array);
-			
-					for (n in obj) {
-						v = obj[n]; t = typeof(v);
-			
-						if (t == "string") v = '"'+v+'"';
-						else if (t == "object" && v !== null) v = JSON.stringify(v);
-			
-						json.push((arr ? "" : '"' + n + '":') + String(v));
-					}
-			
-					return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
-				}
-			};
-			
-			
-			// implement JSON.parse de-serialization
-			JSON.parse = JSON.parse || function (str) {
-				if (str === "") str = '""';
-				eval("var p=" + str + ";");
-				return p;
-			};
-		</script>
-		<script  type="text/javascript" charset="utf-8">
-			
-			
-			if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
-			
-				// window object
-				var win = window.top || window;
-				
-				// session store
-				var store = (win.name ? JSON.parse(win.name) : {});
-				
-				// save store on page unload
-				function Save() {
-					win.name = JSON.stringify(store);
-				};
-				
-				// page unload event
-				if (window.addEventListener) window.addEventListener("unload", Save, false);
-				else if (window.attachEvent) window.attachEvent("onunload", Save);
-				else window.onunload = Save;
-			
-				// public methods
-				return {
-				
-					// set a session variable
-					set: function(name, value) {
-						store[name] = value;
-					},
-					
-					// get a session value
-					get: function(name) {
-						return (store[name] ? store[name] : undefined);
-					},
-					
-					// clear session
-					clear: function() { store = {}; },
-					
-					// dump session data
-					dump: function() { return JSON.stringify(store); }
-			
-				};
-			
-			})();
-		</script>
+	<script src="js/json-serialization.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 		
 		<script type="text/javascript">
 		// <![CDATA[
