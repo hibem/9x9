@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<title>董小满的混合运算练习器</title>
+		<meta name="Description" content="给董小满做数学练习用的"/>
+		<meta name="author" content="黑本"/>
+		<style>
+			/*!初始化 */
+			html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*::before,*::after{box-sizing:inherit}img,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}td:not([align]),th:not([align]){text-align:left}
+			/*!自定义 */
+			html{
+				height: 100%;
+				width: 100%;		
+			}
+			body{
+				height: 100%;
+				width: 100%;	
+				background: #bc8d9e;
+
+			}
+			.container{
+				height: 95%;
+				width: 100%;
+				background: #eabbcd;
+				border-bottom: #f3d5e0 1px solid;
+				
+
+			}
+			.calc{
+				margin: 0 auto;
+				text-align: center;
+				width: 20rem;
+				padding-top: 0.5rem;
+			}
+			.top{				
+				background: #9ee2d6;
+				padding: 0.5rem;
+
+			}
+			.display,.tbox{
+				background: -webkit-linear-gradient(320deg, rgb(143, 212, 217) 0%, rgb(132, 154, 152) 100%);
+				background: -o-linear-gradient(320deg, rgb(143, 212, 217) 0%, rgb(132, 154, 152) 100%);
+				background: -ms-linear-gradient(320deg, rgb(143, 212, 217) 0%, rgb(132, 154, 152) 100%);
+				background: -moz-linear-gradient(320deg, rgb(143, 212, 217) 0%, rgb(132, 154, 152) 100%);
+				background: linear-gradient(130deg, rgb(143, 212, 217) 0%, rgb(132, 154, 152) 100%);
+
+			}
+			.display{
+				clear: both;
+				margin: 0.9rem auto;
+				width: 20.5rem;
+				height: 6rem;	
+				-webkit-border-radius: 0.4rem;
+				-moz-border-radius: 0.4rem;
+				border-radius: 0.4rem;
+				-webkit-box-shadow: inset 15px 14px 15px -14px rgba(0,0,0,0.69);
+				-moz-box-shadow: inset 15px 14px 15px -14px rgba(0,0,0,0.69);
+				box-shadow: inset 15px 14px 15px -14px rgba(0,0,0,0.69);
+				font-size: 2.5rem;
+				padding: 0.5rem;
+				text-shadow: 2px 2px #87a8a5;
+			}
+			#question{
+				clear:both;
+				float: left;
+				margin-top: 0.5rem;
+			}
+			.tbox{
+				margin-top: 0.5rem;
+				float: left;
+				width: 4.8rem;
+				border:none;
+				padding:0.3rem ;
+				background: transparent;
+				font-size: 2.5rem;
+				color:#000;
+				text-shadow: 2px 2px #87a8a5;	
+			}
+			#times,.timer{
+				font-size: 1rem;
+			}
+			#times{
+				float: left;
+			}
+			.timer,#timer{
+				float: right;
+			}
+			table{
+				width: 20rem;
+				float: left;
+				
+			}
+			footer{				
+				line-height: 2rem;
+				text-align: center;
+				font-size: 0.8rem;
+				color:rgba(150, 112, 126, 255);
+				text-shadow:1px 1px 0 #e5acc1,0 0 0 #000,1px 1px 0 #680e32;
+			}
+			input.btn{
+				width: 5rem;
+				height: 5rem;
+				margin: 0.8rem;
+				color:rgba(204, 78, 112, 0.7);
+				text-shadow:1px 1px 1px #fff,0 0 0 #000,1px 1px 1px #fff;
+				font-size:2rem;
+				text-decoration:none;
+				background-color:#f1e7f0;
+				display:block;
+				position:relative;
+				line-height: 4rem;
+			
+				-webkit-box-shadow:inset 0 0 0 #9d6187, 0 11px 0 #9d6187;
+				-moz-box-shadow:inset 0 0 0 #9d6187, 0 11px 0 #9d6187;
+				box-shadow:inset 0 0 0 #9d6187, 0 11px 0  0 #9d6187;
+			
+				-webkit-border-radius: 1rem;
+				-moz-border-radius: 1rem;
+				border-radius: 1rem;				
+				border:1px solid #ebdeec;
+				outline: none; 
+				-webkit-appearance : none ;  /*解决iphone safari上的圆角问题*/
+			}
+			input.btn:active{
+				top:10px;
+				box-shadow:inset 0 0 0#9d6187,inset 0-3px 0#9d6187;
+			}
+			.top1{
+				height:1.5rem;
+			}
+			a.reset{
+				font-size: 0.6rem;
+				float: right;
+				margin-right: 1.5rem;
+				background: #bd8a6c;
+				color: #fff;
+				padding: 0.2rem 0.5rem;
+				border-radius: 0.2rem;
+				box-shadow: inset 0 0 0 #bd2886, 2px 2px 0 0 #524d0a;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="container">
+		<div class="top">
+			<div class="top1">
+			<a class="reset" onclick="window.location.reload();">RESET</a></div>
+			<div class="display">			
+				<div id="times">题1：</div>
+				<div class="timer">倒计时：<div id="timer">1</div></div>
+				<div id="question"></div>
+				<input class="tbox" type="text" id="inp1" disabled/>
+			</div>
+			
+		
+		</div>
+		
+		<div class="calc">
+		<table>
+			<tr>
+				<td><input class="btn" type="button" value="1" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="2" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="3" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+			</tr>
+			<tr>
+				<td><input class="btn" type="button" value="4" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="5" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="6" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+			</tr>
+			<tr>
+				<td><input class="btn" type="button" value="7" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="8" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+				<td><input class="btn" type="button" value="9" onmouseup="audio2.play()" onclick="inp(this);"/></td>
+			</tr>
+			<tr>
+				<td><input class="btn" type="button" value="C" onmouseup="audio.play()" onclick="clearinp();" /></td>
+				<td><input class="btn" type="button" value="0" onmouseup="audio2.play()" onclick="inp(this);"/></td> 
+				<td><input class="btn" type="button" value="↩" onmouseup="audio.play()" onclick="sumbit();" id="sub"/></td>
+			</tr>
+		</table>
+		<script type="text/javascript">		
+			//定义随机数
+			function random(min, max) {
+			      return Math.floor(Math.random() * (max - min)) + min;
+			}
+			var i=1;			
+			var qs= document.getElementById('question');
+			var as;
+			
+			//定义公式
+			function ques(){
+				var a = random(2,9);
+				var b = random(2,9);
+				var c = random(3,100);
+				var r = random(1,3);	
+				var rr= random(1,3);
+				if (r == 1){
+					as =a*b+c ;
+					if (as <= 100){
+						if (rr == 1){
+							qs.innerHTML= (a+" x "+b+" + "+c+" = ");
+						}
+						else{							
+							qs.innerHTML= (c+" + "+a+" x "+b+" = ");
+						}
+					}
+					else{
+						var d = as-100;	
+						c = random(3,d);
+						as = a*b+c;
+						if (rr == 1){
+							qs.innerHTML= (a+" x "+b+" + "+c+" = ");
+						}
+						else{							
+							qs.innerHTML= (c+" + "+a+" x "+b+" = ");
+						}
+					}
+				}
+				if (r==2){
+					as =a*b-c;
+					if (as<0){						
+						as =c-a*b;
+						qs.innerHTML=(c+" - "+a+" x "+b+" = ")
+					}
+					else{
+						qs.innerHTML=(+a+" x "+b+" - "+c+" = ")
+					}
+				}
+				return as;
+			}			
+			
+			//数字按钮
+			function inp(btn){
+				var inp=document.getElementById('inp1'), val=parseInt(inp.value), val=isNaN(val)?'':val;
+				val+=btn.value;
+				inp.value=val;
+				x=inp.value;
+				return x;		
+			}	
+			//提交按钮
+			function sumbit(){
+					var inp2=document.getElementById('inp1');
+					if (x!=as){
+						inp2.value="× 错误！";						
+						audiow.play();
+					}
+					else{
+						inp2.value='✓';	
+						audior.play();
+						setTimeout(function(){								
+								i++;
+								document.getElementById("times").innerHTML = ("题"+i+"：");	
+								ques();
+							},350);
+						}	
+					return i;
+					}
+					
+			//清除输入		
+				function clearinp(){
+					var inp3=document.getElementById('inp1');
+					inp3.value="";
+				}
+			//倒计时，并使按钮不可用
+			var t = 101;  
+			function showTime(){  
+				t -= 1;  
+				document.getElementById('timer').innerHTML= t;  				
+				setTimeout("showTime()",1000);  
+				if(t<=0){  
+					document.getElementsByClassName("btn").disabled=true; 
+					document.getElementById('timer').innerHTML= "0";
+					document.getElementById("sub").disabled=true; 
+					var total=i-1
+					document.getElementById('question').innerHTML=("共完成"+total+"道题");
+				}
+			}  
+			//定义音频			
+			const audio = new Audio('https://wtstock.oss-cn-hangzhou.aliyuncs.com/Audio/04.mp3')
+			const audio2 = new Audio('https://wtstock.oss-cn-hangzhou.aliyuncs.com/Audio/05.mp3')
+			const audior = new Audio('https://wtstock.oss-cn-hangzhou.aliyuncs.com/Audio/06.mp3')
+			const audiow = new Audio('https://wtstock.oss-cn-hangzhou.aliyuncs.com/Audio/07.mp3')
+			//载入问题
+			window.onload=ques();			
+			window.onload=showTime();
+		</script>
+		</div>
+		</div>
+		<footer>
+			Math Exerciser V3 for Dong XiaoMan 
+		</footer>
+	</body>
+</html>
