@@ -152,17 +152,17 @@
 			}
 			.reset{
 				text-align: center;
-				margin-top:0.5rem;
 			}
-			.reset a{
-				margin-top: 1rem;
+			.reset input{
+				margin-top: 0.3rem;
 				margin-left: -11.3rem;
 				font-size: 0.6rem;
 				background: #bd8a6c;
 				color: #fff;
 				padding: 0.2rem 0.5rem;
 				border-radius: 0.2rem;
-				box-shadow: inset 0 0 0 #bd2886, 0 2px 0 0 #524d0a;
+				box-shadow: inset 0 0 0 #bd2886, 0 2px 0 0 #524d0a;	
+				border:0;
 			}
 		</style>
 	</head>
@@ -315,7 +315,7 @@
 		</script>
 		</div>
 		<div class="reset">
-			<a onclick="window.location.reload();">RESET</a>
+			<input type="button" value="RESET" onmouseup="audio.play()" onclick="window.location.reload();" />
 		</div>
 		</div>
 		<footer>			
